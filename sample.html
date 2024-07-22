@@ -1,0 +1,287 @@
+To link different Google Forms to each "Register" button for different events, you can modify the `showEventDetails` function to accept a `formLink` parameter and set the `href` attribute of the "Register" button accordingly.
+
+Here's the updated code:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .registration-button {
+            padding: 15px 30px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 10px;
+        }
+
+        .registration-button:hover {
+            background-color: #005f73;
+            transform: scale(1.1);
+        }
+
+        /* Overlay styles */
+        .event-details-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .event-details-content {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 90%;
+            height: 90%;
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 0.5s;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .left-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .left-section img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+
+        .right-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .right-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .right-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .right-section .coordinators {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping if there are many coordinators */
+            justify-content: flex-start;
+            gap: 30px; /* Spacing between coordinator blocks */
+        }
+
+        .coordinator {
+            text-align: center;
+            width: 150px; /* Fixed width to keep images aligned */
+        }
+
+        .coordinator img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px; /* Space between image and text */
+        }
+
+        .coordinator p {
+            margin: 5px 0;
+        }
+
+        .right-section .register-button {
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            animation: pulse 1.5s infinite;
+            margin-top: 20px;
+        }
+
+        .right-section .register-button:hover {
+            background-color: #005f73;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff5c5c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 1001; /* Ensure it stays on top */
+        }
+
+        .close-button:hover {
+            background-color: #cc4b4b;
+            transform: scale(1.1);
+        }
+
+        @media (min-width: 768px) {
+            .event-details-content {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Registration Buttons for Different Events -->
+    <button class="registration-button" onclick="showEventDetails('Binary Blast', 'An exciting coding competition', 'https://via.placeholder.com/300', ['Important Note 1', 'Important Note 2', 'Important Note 3'], ['Rule 1: Follow all safety protocols.', 'Rule 2: Ensure your project is original.', 'Rule 3: Adhere to the time limits.', 'Rule 4: Be respectful to others.', 'Rule 5: Maintain decorum.'], [{name: 'Coordinator A', contact: '+123456789', position: 'Lead Organizer', image: 'https://via.placeholder.com/100'}, {name: 'Coordinator B', contact: '+987654321', position: 'Co-Organizer', image: 'https://via.placeholder.com/100'}], 'https://formlink1.com')">Event 1 Details</button>
+    <button class="registration-button" onclick="showEventDetails('Cosmic Quest', 'Explore the wonders of the universe', 'https://via.placeholder.com/300', ['Important Note 1', 'Important Note 2', 'Important Note 3'], ['Rule 1: Be on time.', 'Rule 2: Respect the equipment.', 'Rule 3: No food or drinks allowed.', 'Rule 4: No running.', 'Rule 5: Follow instructions.'], [{name: 'Coordinator C', contact: '+123456789', position: 'Lead Organizer', image: 'https://via.placeholder.com/100'}, {name: 'Coordinator D', contact: '+987654321', position: 'Co-Organizer', image: 'https://via.placeholder.com/100'}], 'https://formlink2.com')">Event 2 Details</button>
+    <button class="registration-button" onclick="showEventDetails('Galactic Gala', 'A grand celebration of the cosmos', 'https://via.placeholder.com/300', ['Important Note 1', 'Important Note 2', 'Important Note 3'], ['Rule 1: Dress appropriately.', 'Rule 2: No flash photography.', 'Rule 3: Follow the itinerary.', 'Rule 4: Be courteous.', 'Rule 5: Enjoy responsibly.'], [{name: 'Coordinator E', contact: '+123456789', position: 'Lead Organizer', image: 'https://via.placeholder.com/100'}, {name: 'Coordinator F', contact: '+987654321', position: 'Co-Organizer', image: 'https://via.placeholder.com/100'}], 'https://formlink3.com')">Event 3 Details</button>
+    <button class="registration-button" onclick="showEventDetails('Nebula Night', 'A night of stargazing and discoveries', 'https://via.placeholder.com/300', ['Important Note 1', 'Important Note 2', 'Important Note 3'], ['Rule 1: Wear your ID badge.', 'Rule 2: Be respectful to others.', 'Rule 3: No loud noises.', 'Rule 4: Follow safety protocols.', 'Rule 5: Stay with the group.'], [{name: 'Coordinator G', contact: '+123456789', position: 'Lead Organizer', image: 'https://via.placeholder.com/100'}, {name: 'Coordinator H', contact: '+987654321', position: 'Co-Organizer', image: 'https://via.placeholder.com/100'}], 'https://formlink4.com')">Event 4 Details</button>
+    <button class="registration-button" onclick="showEventDetails('Starry Symposium', 'An enlightening series of talks', 'https://via.placeholder.com/300', ['Important Note 1', 'Important Note 2', 'Important Note 3'], ['Rule 1: Keep your area clean.', 'Rule 2: Stay seated during presentations.', 'Rule 3: No interruptions.', 'Rule 4: Be respectful to speakers.', 'Rule 5: Ask questions politely.'], [{name: 'Coordinator I', contact
+
+: '+123456789', position: 'Lead Organizer', image: 'https://via.placeholder.com/100'}, {name: 'Coordinator J', contact: '+987654321', position: 'Co-Organizer', image: 'https://via.placeholder.com/100'}], 'https://formlink5.com')">Event 5 Details</button>
+
+    <!-- Event Details Overlay -->
+    <div id="eventDetailsOverlay" class="event-details-overlay">
+        <div class="event-details-content">
+            <div class="left-section">
+                <img id="eventImage" src="" alt="Event Image">
+            </div>
+            <div class="right-section">
+                <h2 id="eventName">Event Name</h2>
+                <p id="eventDescription">Event Description</p>
+                <h3>Important Notes:</h3>
+                <ul id="eventImportantNotes"></ul>
+                <h3>Rules:</h3>
+                <ul id="eventRules"></ul>
+                <h3>Coordinators:</h3>
+                <div class="coordinators" id="eventCoordinators"></div>
+                <a id="registerButton" class="register-button" href="#" target="_blank">Register</a>
+            </div>
+            <button class="close-button" onclick="closeEventDetails()">×</button>
+            <video class="video-background" autoplay loop muted>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-space-nebula-3314-large.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <script>
+        function showEventDetails(name, description, image, importantNotes, rules, coordinators, formLink) {
+            document.getElementById('eventName').innerText = name;
+            document.getElementById('eventDescription').innerText = description;
+            document.getElementById('eventImage').src = image;
+
+            // Populate Important Notes
+            const importantNotesList = document.getElementById('eventImportantNotes');
+            importantNotesList.innerHTML = '';
+            importantNotes.forEach(note => {
+                const li = document.createElement('li');
+                li.innerText = note;
+                importantNotesList.appendChild(li);
+            });
+
+            // Populate Rules
+            const rulesList = document.getElementById('eventRules');
+            rulesList.innerHTML = '';
+            rules.forEach(rule => {
+                const li = document.createElement('li');
+                li.innerText = rule;
+                rulesList.appendChild(li);
+            });
+
+            // Populate Coordinators
+            const coordinatorsDiv = document.getElementById('eventCoordinators');
+            coordinatorsDiv.innerHTML = '';
+            coordinators.forEach(coordinator => {
+                const coordinatorDiv = document.createElement('div');
+                coordinatorDiv.className = 'coordinator';
+                coordinatorDiv.innerHTML = `
+                    <img src="${coordinator.image}" alt="${coordinator.name}">
+                    <p>${coordinator.name}</p>
+                    <p>${coordinator.position}</p>
+                    <p>${coordinator.contact}</p>
+                `;
+                coordinatorsDiv.appendChild(coordinatorDiv);
+            });
+
+            // Set the registration form link
+            const registerButton = document.getElementById('registerButton');
+            registerButton.href = formLink;
+
+            document.getElementById('eventDetailsOverlay').style.display = 'flex';
+        }
+
+        function closeEventDetails() {
+            document.getElementById('eventDetailsOverlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+```
+
+In this updated code, each `registration-button` element calls `showEventDetails` with a unique `formLink` parameter. The `registerButton` element's `href` attribute is set to this link, so clicking the "Register" button will open the respective Google Form in a new tab.
