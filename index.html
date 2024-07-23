@@ -227,6 +227,17 @@
             text-align: center;
         }
         }
+        @media (max-width: 640px) {
+            #navbar {
+                background-image: url(''); /* Replace with your image path */
+                background-size: cover;
+                background-position: center;
+            }
+
+            #res_nav {
+                background-color: transparent; /* Ensure no background color overrides the image */
+            }
+        }
         
     </style>
 </head>
@@ -235,7 +246,7 @@
 
     <div class="h-screen relative text-white text-xl ">
         <nav id="navbar"
-            class="h-20 sm:h-20 nav transition duration-500 flex-col justify-center items-center bg-transparent">
+            class="h-20 sm:h-20 nav transition duration-500 flex-col justify-center items-center">
             <div class="flex sm:flex-row flex-col h-full justify-between items-center py-3 bg-transparent text-black">
                 <div class="flex justify-between items-center w-full sm:w-1/2 pl-3">
                     <div class="sm:text-2xl text-lg">
@@ -260,7 +271,7 @@
                     </div>
                 </div>
                 <div id="res_nav"
-                    class=" sm:pr-10 hidden sm:flex sm:flex-row flex-col pt-14 sm:pt-0 sm:bg-transparent bg-transparent sm:w-max w-full pb-96 sm:pb-0">
+                    class=" sm:pr-10 hidden sm:flex sm:flex-row flex-col pt-14 sm:pt-0  sm:w-max w-full pb-96 sm:pb-0">
                     <ul class="sm:flex-row flex flex-col text-2xl font-mono w-full justify-center text-center">
                         <li class="b1 transition duration-300 p-4 sm:p-6 ease-in-out"><a href="#">HOME</a></li>
                         <li class="b1 transition duration-300 p-4 sm:p-6 ease-in-out"><a href="#about">ABOUT</a></li>
@@ -301,11 +312,11 @@
 
                 <!-- <EVENTS-1> -->
                     
-                <div class="h-100 relative rounded-xl bg-chg w-80 md:w-80 lg:w-72 shadow-md overflow-hidden group">
+                <div class="h-100 relative bg-chg w-80 md:w-80 lg:w-72 shadow-md overflow-hidden group">
                     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         alt="$props.title" src="img/logos/STRIKE-IT.png" />
                     <div
-                        class="eve absolute bottom-0 left-0 w-full h-0 bg-white/80 hover:px-2 hover:py-1 transition-all duration-500 overflow-hidden group-hover:h-60">
+                        class="eve border border-white absolute bottom-0 left-0 w-full h-0 bg-white/80 hover:px-2 hover:py-1 transition-all duration-500 overflow-hidden group-hover:h-60">
                         <h1 class="text-lg font-bold p-1 whitespace-nowrap transition-all duration-500 group-hover:whitespace-normal"
                             style="text-align: center;">
                             FIND THE FAULT, FIX THE FLOW!
@@ -332,7 +343,7 @@
                 </div>
                 <div class="h-100 relative rounded-xl bg-chg w-80 md:w-80 lg:w-72 shadow-md overflow-hidden group">
                     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        alt="$props.title" src="img/logos/infusion-del.png" />
+                        alt="$props.title" src="img/logos/infusion.png" />
                     <div
                         class="eve absolute bottom-0 left-0 w-full h-0 bg-white/80 hover:px-2 hover:py-1 transition-all duration-500 overflow-hidden group-hover:h-60">
                         <h1 class="text-lg font-bold p-1 whitespace-nowrap transition-all duration-500 group-hover:whitespace-normal"
@@ -340,7 +351,7 @@
                             SPEAK, CONVINCE, CONQUER!
 
                         </h1>
-                        <button class="registration-button" onclick="showEventDetails('INFUSION', 'Infusion is an event that beholds a lot of adventure. It is an epitome of amusement filled with knowledge technically that enables participants to learnt answer and win accolades. There will be quiz followed by mystery box and then treasure hunt. All these will be based on basic electronics, space and then software and hardware.', 'img/logos/infusion-del.png', ['For this eventparticipants should be prepared with Basic Electronics, Space Technology, AI and ML.'], ['Rule 1: Each team consist of 3 members.', 'Rule 2: The event will takes place in 3 rounds.', 'Rule 3: Students are asked to bring their college ID.', 'Rule 4: Unnecessary chaos by the teams will result in negative marking.', 'Rule 5: Teams must abide by the instructions given by the event volunteers besides them.','Rule 6:  Answers given after a certain time limit will not be considered for evaluation.','Rule 7: The top three teams will be rewarded with cash price.'], [{name: ' Gayathri R J ', contact: '+91 9150765356', position: 'Lead Organizer', image: 'img/persons/Event-3b.jpg'}, {name: 'Sidhaarth M S', contact: '+91 8946039184', position: 'Co-Organizer', image: 'img/persons/Event-3a.jpg'}],'https://forms.gle/jbtvdWQ1uvyH52Tb7')">Details</button>
+                        <button class="registration-button" onclick="showEventDetails('INFUSION', 'Infusion is an event that beholds a lot of adventure. It is an epitome of amusement filled with knowledge technically that enables participants to learnt answer and win accolades. There will be quiz followed by mystery box and then treasure hunt. All these will be based on basic electronics, space and then software and hardware.', 'img/logos/infusion.png', ['For this eventparticipants should be prepared with Basic Electronics, Space Technology, AI and ML.'], ['Rule 1: Each team consist of 3 members.', 'Rule 2: The event will takes place in 3 rounds.', 'Rule 3: Students are asked to bring their college ID.', 'Rule 4: Unnecessary chaos by the teams will result in negative marking.', 'Rule 5: Teams must abide by the instructions given by the event volunteers besides them.','Rule 6:  Answers given after a certain time limit will not be considered for evaluation.','Rule 7: The top three teams will be rewarded with cash price.'], [{name: ' Gayathri R J ', contact: '+91 9150765356', position: 'Lead Organizer', image: 'img/persons/Event-3b.jpg'}, {name: 'Sidhaarth M S', contact: '+91 8946039184', position: 'Co-Organizer', image: 'img/persons/Event-3a.jpg'}],'https://forms.gle/jbtvdWQ1uvyH52Tb7')">Details</button>
 
                     </div>
                 </div>
@@ -1108,6 +1119,50 @@
 
     </div>
     <script>
+
+function nav() {
+    const mobileNav = document.getElementById("res_nav");
+    const mob = document.getElementById("navbar");
+    const body = document.body;
+    const toggleNavBtn = document.getElementById("toggleNavBtn");
+    const cross = document.getElementById("cross");
+
+    if (mobileNav) {
+        const currentDisplay = window.getComputedStyle(mobileNav).display;
+        if (currentDisplay === "none") {
+            mobileNav.style.display = "flex";
+            body.style.overflowY = "hidden";
+            toggleNavBtn.style.display = "none";
+            cross.style.display = "flex";
+
+            mobileNav.style.backgroundImage = "url('/img/nav-bg.jpg')"; // Add your image path here
+            mob.style.backgroundImage = "url('/img/nav-bg.jpg')"; // Add your image path here
+
+            // mobileNav.style.backgroundColor = "white";
+            // mob.style.backgroundColor = "white";
+
+        } else {
+            mobileNav.style.display = "none";
+            body.style.overflowY = "auto";
+            toggleNavBtn.style.display = "flex";
+            cross.style.display = "none";
+            
+            mobileNav.style.backgroundImage = "none"; // Remove background image when nav is hidden
+            mob.style.backgroundImage = "none"; // Remove background image when nav is hidden
+
+            // mobileNav.style.backgroundColor = "transparent";
+            // mob.style.backgroundColor = "transparent";
+        }
+    }
+}
+
+document.querySelectorAll('#res_nav ul li a').forEach(anchor => {
+    anchor.addEventListener('click', function () {
+        if (window.innerWidth <= 640) {
+            nav();
+        }
+    });
+});
         function showEventDetails(name, description, image, importantNotes, rules, coordinators, formLink) {
             document.getElementById('eventName').innerText = name;
             document.getElementById('eventDescription').innerText = description;
