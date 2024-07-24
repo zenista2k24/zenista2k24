@@ -215,6 +215,11 @@
             background-color: #cc4b4b;
             transform: scale(1.1);
         }
+        .bg-image {
+            background-image: url('/img/nav-bg.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
 
         @media (min-width: 768px) {
             .event-details-content {
@@ -1114,6 +1119,15 @@ document.querySelectorAll('#res_nav ul li a').forEach(anchor => {
          setTimeout(function () {
         $("#load").hide();
     }, 3500);
+    
+    window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 0) {
+        navbar.classList.add('bg-image');
+    } else {
+        navbar.classList.remove('bg-image');
+    }
+});
     </script>
 </body>
 
