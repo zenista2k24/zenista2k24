@@ -25,7 +25,7 @@
     font-family: sans-serif;
     width: 220px;
     height: 220px;
-    background-image: url(/img/profile-bg-2.jpg);
+    background-image: url(/zenista2k24/img/profile-bg-2.jpg);
     /* background-color: white; */
     background-position: center;
     padding: 30px;
@@ -111,7 +111,7 @@
 
 
 .eve{
-    background-image: url(/img/profile-bg.avif);
+    background-image: url(/zenista2k24/img/profile-bg.avif);
     color: white;
     box-shadow: 0 0 25px white;
     border: 5px;
